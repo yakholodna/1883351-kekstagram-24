@@ -1,11 +1,5 @@
-function getRandomInt(from, to) {
-  return Math.floor(Math.random()*(to - from + 1) + from);
+const getRandomInt = (from, to) => Math.floor(Math.random()*(to - from + 1) + from);
 }
 getRandomInt(2, 10);
-function checkLengthRequirement(string, maxLength) {
-  if (string.length <= maxLength) {
-    return true;
-  }
-  return false;
-}
+const checkLengthRequirement = (string, maxLength) => string.length <= maxLength);
 checkLengthRequirement('hello, world!', 5);
