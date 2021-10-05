@@ -33,7 +33,7 @@ const generateComment = () => {
     message: COMMENT_SUGGESTIONS[randomCommentInt],
     name: COMMENT_AUTHORS[randomCommentAuthorInt],
   };
-};
+}
 
 // Creates one picture object
 const createPicture = (idNum, allComments) => {
