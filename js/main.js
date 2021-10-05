@@ -10,7 +10,7 @@ const COMMENT_SUGGESTIONS = [
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
 // Different comment authors
@@ -20,7 +20,7 @@ const COMMENT_AUTHORS = [
   'Скот',
   'Чарли',
   'Ангелина',
-  'Мая'
+  'Мая',
 ];
 
 // Creates one comment object
@@ -36,15 +36,13 @@ const generateComment = () => {
 };
 
 // Creates one picture object
-const createPicture = (idNum, allComments) => {
-  return {
-    id: idNum,
-    url: 'photos/' + idNum + '.jpg',
-    description: 'description of picture goes here',
-    likes: getRandomInt(15, 200),
-    comments: allComments,
-  };
-}
+const createPicture = (idNum, allComments) => ({
+  id: idNum,
+  url: `photos/${idNum}.jpg`,
+  description: 'description of picture goes here',
+  likes: getRandomInt(15, 200),
+  comments: allComments,
+});
 
 // Creates an array of pictures
 const generatePictures = () => {
@@ -62,7 +60,7 @@ const generatePictures = () => {
     pictures.push(createPicture(pic, comments));
   }
   return pictures;
-}
+};
 generatePictures();
 
 
