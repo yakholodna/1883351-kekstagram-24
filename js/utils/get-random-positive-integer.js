@@ -10,8 +10,8 @@ function getRandomPositiveInteger (num1, num2) {
   // для этого на всякий пожарный случай нижнюю границу диапазона
   // мы округляем к ближайшему большему целому с помощью Math.ceil,
   // а верхнюю границу - к ближайшему меньшему целому с помощью Math.floor
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const lower = Math.ceil(Math.min(Math.abs(num1), Math.abs(num2)));
+  const upper = Math.floor(Math.max(Math.abs(num1), Math.abs(num2)));
   // Обратите внимание, чтобы учесть условие, что диапазон может быть [0, ∞),
   // мы не ругаем пользователя за переданное отрицательное число,
   // а просто берём его по модулю с помощью Math.abs
