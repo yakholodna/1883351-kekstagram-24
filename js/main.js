@@ -3,6 +3,10 @@ import {numOfPics} from './utils/constants';
 import {numOfComments} from './utils/constants';
 import {generateComment} from './utils/create-functions';
 import {createPicture} from './utils/create-functions';
+import {imageElement} from './utils/miniatures';
+import {infoElement} from './utils/miniatures';
+import {pictureFragment} from './utils/miniatures';
+import {pictureContainer} from './utils/miniatures';
 
 // Creates an array of pictures
 const generatePictures = () => {
@@ -16,8 +20,17 @@ const generatePictures = () => {
     for (let com = 0; com < numOfComments; com++) {
       comments.push(generateComment());
     }
+    //Creates a picture
+    const newPicture = createPicture(pic, comments);
+    //Addition of DOM elements
+    imageElement.src.textContent = newPicture.url;
+    pictureFragment.appendChild(imageElement);
+    infoElement.children[0].textContent = String(numOfComments);
+    infoElement.children[1].textContent = String(newPicture.likes);
+    pictureFragment.appendChild(infoElement);
+    pictureContainer.appendChild(pictureFragment);
     // Adds newly created picture w/ unique id and comments to array of pictures
-    pictures.push(createPicture(pic, comments));
+    pictures.push(newPicture);
   }
   return pictures;
 };
