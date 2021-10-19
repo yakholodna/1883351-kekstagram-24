@@ -1,20 +1,21 @@
-//Template for a picture from HTML
-const pictureContainer = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content;
-//Attributes that need to be assigned (found in template)
-const image = pictureTemplate.querySelector('img');
-const imageInfo = pictureTemplate.querySelector('p');
-//Fragment that will be inserted into the picture container
-const pictureFragment = document.createDocumentFragment();
+const createMiniature = (photos) => {
+  const pictureTemplate = document.querySelector('#picture').content;
+  const pictureFragment = document.createDocumentFragment();
 
-//All elements
-const imageElement = image.cloneNode(true);
-const infoElement = imageInfo.cloneNode(true);
+  photos.forEach((photo) => {
+    const photoElement = pictureTemplate.cloneNode(true);
+    photoElement.querySelector('.picture__img').src = photo.url;
+    photoElement.querySelector('.picture__likes').textContent = photo.likes;
+    photoElement.querySelector('.picture__comments').textContent = photo.comments;
+    pictureFragment.appendChild(photoElement);
+
+  });
+
+  const pictureContainer = document.querySelector('.pictures');
+  pictureContainer.appendChild(pictureFragment);
+}
 
 //Exports
-export {pictureContainer};
-export {pictureFragment};
-export {imageElement};
-export {infoElement};
+export {createMiniature};
 
 
