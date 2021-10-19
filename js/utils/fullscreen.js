@@ -19,7 +19,7 @@ const showFullScreen = (photo) => {
   const socialCommentsList = bigPicture.querySelector('.social__comments');
 
   //Sets up all comments for the picture
-  for (const com = 0; com < photo.comments.length; com++) {
+  for (let com = 0; com < photo.comments.length; com++) {
     const socialComment = document.createElement('li');
     socialComment.classList.add('social__comment');
     const socialCommentImg = document.createElement('img');
@@ -47,9 +47,8 @@ const showFullScreen = (photo) => {
   //Closing window using the exit button
   const closeModalElement = document.querySelector('#picture-cancel');
   closeModalElement.addEventListener('click', () => {
-      closeModal();
-    }
-  );
+    closeModal();
+  });
 
   //Closing window using esc
   document.addEventListener('keydown', (evt) => {

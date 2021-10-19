@@ -13,7 +13,7 @@ const createMiniature = (photos) => {
 
   const pictureContainer = document.querySelector('.pictures');
   pictureContainer.appendChild(pictureFragment);
-}
+};
 
 //Exports
 export {createMiniature};
