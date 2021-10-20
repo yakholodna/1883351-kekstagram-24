@@ -1,5 +1,5 @@
-import {getRandomInt} from './utils';
-import {COMMENT_AUTHORS, COMMENT_SUGGESTIONS} from './constants';
+import {getRandomInt} from './utils.js';
+import {COMMENT_AUTHORS, COMMENT_SUGGESTIONS} from './constants.js';
 
 // Creates one comment object
 const generateComment = () => {

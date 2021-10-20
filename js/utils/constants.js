@@ -21,9 +21,13 @@ const COMMENT_AUTHORS = [
 // Constants
 const numOfPics = 26;
 const numOfComments = 5;
+const escKeyCode = 27;
+const fullScreenImgSize = 35;
 
 
 export {COMMENT_AUTHORS};
 export {COMMENT_SUGGESTIONS};
 export {numOfPics};
 export {numOfComments};
+export {escKeyCode};
+export {fullScreenImgSize};
