@@ -1,6 +1,7 @@
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
   const pictureFragment = document.createDocumentFragment();
+  const pictureContainer = document.querySelector('.pictures');
 
   photos.forEach((photo) => {
     const photoElement = pictureTemplate.cloneNode(true);
@@ -8,10 +9,7 @@ const createMiniature = (photos) => {
     photoElement.querySelector('.picture__likes').textContent = photo.likes;
     photoElement.querySelector('.picture__comments').textContent = photo.comments;
     pictureFragment.appendChild(photoElement);
-
   });
-
-  const pictureContainer = document.querySelector('.pictures');
   pictureContainer.appendChild(pictureFragment);
 };
 

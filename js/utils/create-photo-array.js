@@ -1,8 +1,6 @@
 //All imports
-import {numOfPics} from './constants';
-import {numOfComments} from './constants';
-import {generateComment} from './create-functions';
-import {createPicture} from './create-functions';
+import {numOfPics, numOfComments} from './constants.js';
+import {generateComment, createPicture} from './create-functions.js';
 
 // Array of 25 pictures
 const pictures = [];

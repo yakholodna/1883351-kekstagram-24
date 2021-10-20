@@ -1,3 +1,6 @@
+import {escKeyCode} from './constants.js';
+import {fullScreenImgSize} from './constants.js';
+
 //Activates full-screen mode
 const bigPicture = document.querySelector('.big-picture');
 //Function that exits fullscreen mode
@@ -26,8 +29,8 @@ const showFullScreen = (photo) => {
     socialCommentImg.classList.add('social__picture');
     socialCommentImg.src = photo.comments[com].avatar;
     socialCommentImg.alt = photo.comments[com].name;
-    socialCommentImg.width = 35;
-    socialCommentImg.height = 35;
+    socialCommentImg.width = fullScreenImgSize;
+    socialCommentImg.height = fullScreenImgSize;
     socialComment.appendChild(socialCommentImg);
     const socialCommentText = document.createElement('p');
     socialCommentText.classList.add('social__text');
@@ -53,7 +56,7 @@ const showFullScreen = (photo) => {
   //Closing window using esc
   document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === escKeyCode) {
       closeModal();
     }
   });
