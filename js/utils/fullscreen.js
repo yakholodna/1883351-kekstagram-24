@@ -1,4 +1,4 @@
-import {escKeyCode} from './constants.js';
+import {escCode} from './constants.js';
 import {fullScreenImgSize} from './constants.js';
 
 //Activates full-screen mode
@@ -56,7 +56,7 @@ const showFullScreen = (photo) => {
   //Closing window using esc
   document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
-    if (evt.keyCode === escKeyCode) {
+    if (evt.key === escCode) {
       closeModal();
     }
   });
