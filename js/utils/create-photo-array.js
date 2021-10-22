@@ -22,9 +22,9 @@ const generatePictures = () => {
     // Adds newly created picture w/ unique id and comments to array of pictures
     pictures.push(newPicture);
   }
+  return pictures;
 };
-generatePictures();
 
-export {pictures};
+export {generatePictures};
 
 
