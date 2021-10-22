@@ -1,6 +1,7 @@
 //All imports
-import {numOfPics, numOfComments} from './constants.js';
+import {numOfPics} from './constants.js';
 import {generateComment, createPicture} from './create-functions.js';
+import {getRandomInt} from './utils';
 
 // Array of 25 pictures
 const pictures = [];
@@ -9,6 +10,7 @@ const pictures = [];
 const generatePictures = () => {
   // For loop for creating the array of pictures
   for (let pic = 1; pic < numOfPics; pic++) {
+    const numOfComments = getRandomInt(1,5);
     // Array of comments for each picture
     const comments = [];
     // For loop that creates 5 comments

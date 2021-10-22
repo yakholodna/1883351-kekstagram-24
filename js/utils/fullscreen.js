@@ -1,16 +1,13 @@
 import {escCode} from './constants.js';
 import {fullScreenImgSize} from './constants.js';
-
-//Activates full-screen mode
-const bigPicture = document.querySelector('.big-picture');
-//Function that exits fullscreen mode
-const closeModal = () => {
-  bigPicture.classList.add('hidden');
-};
+import {addBodyModalOpen} from './constants.js';
+import {makesHidden} from './constants.js';
 
 const showFullScreen = (photo) => {
-  //Setting up the picture settings (src, likes, comments, description)
+  //Activates full-screen mode
+  const bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden');
+  //Setting up the picture settings (src, likes, comments, description)
   const bigImgSource = bigPicture.querySelector('.big-picture__img img');
   bigImgSource.src = photo.url;
   const bigImgLikes = bigPicture.querySelector('.likes-count');
@@ -40,24 +37,23 @@ const showFullScreen = (photo) => {
   }
 
   const socialCommentCount = document.querySelector('.social__comment-count');
-  socialCommentCount.classList.add('hidden');
+  makesHidden(socialCommentCount);
   const commentsLoader = document.querySelector('.comments-loader');
-  commentsLoader.classList.add('hidden');
+  makesHidden(commentsLoader);
 
-  const body = document.querySelector('body');
-  body.classList.add('modal-open');
+  addBodyModalOpen();
 
   //Closing window using the exit button
   const closeModalElement = document.querySelector('#picture-cancel');
   closeModalElement.addEventListener('click', () => {
-    closeModal();
+    makesHidden(bigPicture);
   });
 
   //Closing window using esc
   document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     if (evt.key === escCode) {
-      closeModal();
+      makesHidden(bigPicture);
     }
   });
 };

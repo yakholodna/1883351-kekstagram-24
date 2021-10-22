@@ -7,7 +7,7 @@ const createMiniature = (photos) => {
     const photoElement = pictureTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = photo.url;
     photoElement.querySelector('.picture__likes').textContent = photo.likes;
-    photoElement.querySelector('.picture__comments').textContent = photo.comments;
+    photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
     pictureFragment.appendChild(photoElement);
   });
   pictureContainer.appendChild(pictureFragment);
