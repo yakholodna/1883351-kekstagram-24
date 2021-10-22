@@ -7,16 +7,13 @@ const formElement = document.querySelector('.img-upload__form');
 //Hashtags and comments containers
 const hashtagText = document.querySelector('.text__hashtags');
 
-//Buttons that open and close the upload window
-const openButton = document.querySelector('#upload-file');
-openButton.addEventListener('change', () => {
-  openForm();
-});
-const closeButton = document.querySelector('#upload-cancel');
-closeButton.addEventListener('click', () => {
-  closeForm();
-  formElement.reset();
-});
+//Closing upload form with esc key
+const onKeyDown = (evt) => {
+  evt.preventDefault();
+  if (evt.key === escCode) {
+    closeForm();
+  }
+};
 
 //Functions that open and close the form
 const openForm = () => {
@@ -30,13 +27,16 @@ const closeForm = () => {
   document.removeEventListener('keydown', onKeyDown);
 };
 
-//Closing upload form with esc key
-const onKeyDown = (evt) => {
-  evt.preventDefault();
-  if (evt.key === escCode) {
-    closeForm();
-  }
-};
+//Buttons that open and close the upload window
+const openButton = document.querySelector('#upload-file');
+openButton.addEventListener('change', () => {
+  openForm();
+});
+const closeButton = document.querySelector('#upload-cancel');
+closeButton.addEventListener('click', () => {
+  closeForm();
+  formElement.reset();
+});
 
 //Checking hashtag validity
 hashtagText.addEventListener('input', () => {
@@ -53,7 +53,7 @@ hashtagText.addEventListener('input', () => {
 
   for (let i = 0; i < hashArr.length; i++) {
     if (!valid.test(hashArr[i]) && hashArr[i] !== '') {
-      hashtagText.setCustomValidity('Не валидный хештег. Убедитесь что нету спецсимволов, пробелов, символов пунктуации, и эмодзи.')
+      hashtagText.setCustomValidity('Не валидный хештег. Убедитесь что нету спецсимволов, пробелов, символов пунктуации, и эмодзи.');
     }
     for (let j = 0; j < hashArr.length; j++ ) {
       if (hashArr[i].toLowerCase() === hashArr[j].toLowerCase()) {
