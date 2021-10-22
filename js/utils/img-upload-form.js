@@ -16,16 +16,16 @@ const onKeyDown = (evt) => {
 };
 
 //Functions that open and close the form
-const openForm = () => {
+function openForm() {
   uploadForm.classList.remove('hidden');
   addBodyModalOpen();
   document.addEventListener('keydown', onKeyDown);
-};
-const closeForm = () => {
+}
+function closeForm() {
   makesHidden(uploadForm);
   removeBodyModalOpen();
   document.removeEventListener('keydown', onKeyDown);
-};
+}
 
 //Buttons that open and close the upload window
 const openButton = document.querySelector('#upload-file');
