@@ -11,7 +11,7 @@ const createMiniature = (photos) => {
     photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
     photoElement.addEventListener('click', () => {
       showFullScreen(photoElement);
-    })
+    });
     pictureFragment.appendChild(photoElement);
   });
   return pictureContainer.appendChild(pictureFragment);
