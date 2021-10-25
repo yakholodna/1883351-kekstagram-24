@@ -1,7 +1,4 @@
-import {escCode} from './constants.js';
-import {fullScreenImgSize} from './constants.js';
-import {addBodyModalOpen} from './constants.js';
-import {makesHidden} from './constants.js';
+import {escCode, fullScreenImgSize, addBodyModalOpen, makesHidden} from './constants.js';
 
 const showFullScreen = (photo) => {
   //Activates full-screen mode
