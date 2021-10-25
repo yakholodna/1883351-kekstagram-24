@@ -1,6 +1,6 @@
-import {pictures} from './utils/create-photo-array.js';
+import {generatePictures} from './utils/create-photo-array.js';
 import {createMiniature} from './utils/miniatures.js';
-import {showFullScreen} from './utils/fullscreen.js';
+import './utils/img-upload-form';
 
-createMiniature(pictures);
-showFullScreen(pictures[0]);
+createMiniature(generatePictures());
+

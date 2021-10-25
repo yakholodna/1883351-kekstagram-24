@@ -1,3 +1,4 @@
+import {showFullScreen} from './fullscreen';
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
   const pictureFragment = document.createDocumentFragment();
@@ -7,10 +8,13 @@ const createMiniature = (photos) => {
     const photoElement = pictureTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = photo.url;
     photoElement.querySelector('.picture__likes').textContent = photo.likes;
-    photoElement.querySelector('.picture__comments').textContent = photo.comments;
+    photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
+    photoElement.addEventListener('click', () => {
+      showFullScreen(photoElement);
+    });
     pictureFragment.appendChild(photoElement);
   });
-  pictureContainer.appendChild(pictureFragment);
+  return pictureContainer.appendChild(pictureFragment);
 };
 
 //Exports
