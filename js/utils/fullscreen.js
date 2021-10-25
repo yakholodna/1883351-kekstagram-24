@@ -60,12 +60,13 @@ const showFullScreen = (photo) => {
       }
       arrayOfCommentArrays.push(commentFragment);
     }
+    commentsDistributed += commentFragmentSize;
   }
 
   let fragmentsUsed= 1;
   //Button that loads more comments
   commentsLoader.addEventListener('click', () => {
-    let currentFragment = arrayOfCommentArrays[fragmentsUsed];
+    const currentFragment = arrayOfCommentArrays[fragmentsUsed];
     //Sets up all comments for the picture
     for (let com = 0; com < currentFragment.length; com++) {
       const socialComment = document.createElement('li');
