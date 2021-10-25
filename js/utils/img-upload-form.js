@@ -1,4 +1,4 @@
-import {addBodyModalOpen, escCode, makesHidden, removeBodyModalOpen} from './constants';
+import {addBodyModalOpen, escCode, makesHidden, removeBodyModalOpen, maxNumOfHashtags} from './constants';
 
 //Finds the upload and the form
 const uploadForm = document.querySelector('.img-upload__overlay');
@@ -44,7 +44,7 @@ hashtagText.addEventListener('input', () => {
   const hashArr = value.split();
   const valid = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
-  if (hashArr.length > 5) {
+  if (hashArr.length > maxNumOfHashtags) {
     hashtagText.setCustomValidity('Не может быть больше пяти хештегов!');
   }
   else {
