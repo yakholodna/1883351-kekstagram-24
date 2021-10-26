@@ -1,4 +1,4 @@
-import {escCode, fullScreenImgSize, addBodyModalOpen, makesHidden, commentFragmentSize} from './constants.js';
+import {escCode, fullScreenImgSize, addBodyModalOpen, makesHidden, commentFragmentSize, maxNumOfHashtags} from './constants.js';
 
 const showFullScreen = (photo) => {
   //Activates full-screen mode
@@ -11,7 +11,7 @@ const showFullScreen = (photo) => {
   bigPicture.classList.remove('hidden');
   addBodyModalOpen();
   socialCommentCount.classList.remove('hidden');
-  if (photo.comments.length > 5) {
+  if (photo.comments.length > maxNumOfHashtags) {
     commentsLoader.classList.remove('hidden');
   }
 

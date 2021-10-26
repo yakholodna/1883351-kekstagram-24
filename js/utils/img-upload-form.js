@@ -1,4 +1,4 @@
-import {addBodyModalOpen, escCode, makesHidden, removeBodyModalOpen, maxNumOfHashtags} from './constants';
+import {addBodyModalOpen, escCode, makesHidden, removeBodyModalOpen, maxNumOfHashtags} from './constants.js';
 
 //Finds the upload and the form
 const uploadForm = document.querySelector('.img-upload__overlay');
@@ -63,5 +63,6 @@ hashtagText.addEventListener('input', () => {
   }
   hashtagText.reportValidity();
 });
+
 
 
