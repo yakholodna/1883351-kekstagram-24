@@ -63,6 +63,3 @@ hashtagText.addEventListener('input', () => {
   }
   hashtagText.reportValidity();
 });
-
-
-
