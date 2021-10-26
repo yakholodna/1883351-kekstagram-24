@@ -23,6 +23,7 @@ const numOfPics = 26;
 const escCode = 'Escape';
 const fullScreenImgSize = 35;
 const maxNumOfHashtags = 5;
+const commentFragmentSize = 5;
 
 const addBodyModalOpen = () => document.querySelector('body').classList.add('modal-open');
 const removeBodyModalOpen = () => document.querySelector('body').classList.remove('modal-open');
@@ -36,6 +37,8 @@ export {numOfPics};
 export {escCode};
 export {fullScreenImgSize};
 export {maxNumOfHashtags};
+export {commentFragmentSize};
 export {addBodyModalOpen};
 export {removeBodyModalOpen};
 export {makesHidden};
+

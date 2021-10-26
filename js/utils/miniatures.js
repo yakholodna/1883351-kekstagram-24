@@ -1,4 +1,4 @@
-import {showFullScreen} from './fullscreen';
+import {showFullScreen} from './fullscreen.js';
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
   const pictureFragment = document.createDocumentFragment();
