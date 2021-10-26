@@ -10,7 +10,7 @@ const createMiniature = (photos) => {
     photoElement.querySelector('.picture__likes').textContent = photo.likes;
     photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
     photoElement.addEventListener('click', () => {
-      showFullScreen(photoElement);
+      showFullScreen(photo);
     });
     pictureFragment.appendChild(photoElement);
   });

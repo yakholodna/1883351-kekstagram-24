@@ -1,6 +1,6 @@
-import {generatePictures} from './utils/create-photo-array.js';
-import {createMiniature} from './utils/miniatures.js';
-import './utils/img-upload-form.js';
+import {generatePictures} from './create-photo-array.js';
+import {createMiniature} from './miniatures.js';
+import './img-upload-form.js';
 
 createMiniature(generatePictures());
 

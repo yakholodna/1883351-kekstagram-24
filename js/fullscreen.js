@@ -1,4 +1,4 @@
-import {escCode, fullScreenImgSize, addBodyModalOpen, makesHidden, commentFragmentSize, maxNumOfHashtags} from './constants.js';
+import {escCode, fullScreenImgSize, addBodyModalOpen, makesHidden, commentFragmentSize, maxNumOfHashtags} from './utils/constants.js';
 
 const showFullScreen = (photo) => {
   //Activates full-screen mode
@@ -21,7 +21,7 @@ const showFullScreen = (photo) => {
   const bigImgLikes = bigPicture.querySelector('.likes-count');
   bigImgLikes.textContent = photo.likes;
   const bigImgComm = bigPicture.querySelector('.comments-count');
-  bigImgComm.textContent = photo.comments;
+  bigImgComm.textContent = photo.comments.length;
   const bigImgDescription = bigPicture.querySelector('.social__caption');
   bigImgDescription.textContent = photo.description;
   const socialCommentsList = bigPicture.querySelector('.social__comments');
