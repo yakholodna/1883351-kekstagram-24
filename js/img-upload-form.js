@@ -4,8 +4,126 @@ import {addBodyModalOpen, escCode, makesHidden, removeBodyModalOpen, maxNumOfHas
 const uploadForm = document.querySelector('.img-upload__overlay');
 const formElement = document.querySelector('.img-upload__form');
 
-//Hashtags and comments containers
+//Hashtags container
 const hashtagText = document.querySelector('.text__hashtags');
+
+//Preview image scale
+const imgUploadPreview = document.querySelector('.img-upload__preview');
+let scaleNumber = 100;
+const scaleValue = document.querySelector('.scale__control--value');
+scaleValue.value.textContent = `${scaleNumber}%`;
+const scaleIncrease = document.querySelector('.scale__control--bigger');
+scaleIncrease.addEventListener('click', () => {
+  if (scaleNumber <= 75) {
+    scaleNumber += 25;
+    scaleValue.value.textContent = `${scaleNumber}%`;
+    imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
+  }
+})
+const scaleDecrease = document.querySelector('.scale__control--smaller');
+scaleDecrease.addEventListener('click', () => {
+  if (scaleNumber >= 50) {
+    scaleNumber -= 25;
+    scaleValue.value.textContent = `${scaleNumber}%`;
+    imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
+  }
+})
+
+//Effects slider
+const effectLevelSlider = document.querySelector('.effect-level__slider');
+const effectLevelValue = document.querySelector('.effect-level__value');
+noUiSlider.create(effectLevelSlider, {
+  start : 1.00,
+  range : {
+    min : 0,
+    max : 1.00,
+  },
+  step : 0.1,
+  connect : 'lower',
+});
+makesHidden(effectLevelSlider);
+effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+  effectLevelValue.value = unencoded[handle];
+});
+
+//Effects
+const effectsList = document.querySelector('.img-upload__effects  .effects');
+let selectedFilter = '';
+const onFilterChange = (evt) => {
+  selectedFilter = evt.target.value;
+  if (selectedFilter !== 'none') {
+    //Adds filter to preview
+    const currentClass = imgUploadPreview.className;
+    imgUploadPreview.classList.remove(currentClass);
+    imgUploadPreview.classList.add('img-upload__preview');
+    imgUploadPreview.classList.add(`effects__preview--${selectedFilter}`);
+    //Works slider
+    effectLevelSlider.classList.remove('hidden');
+    if (selectedFilter === 'chrome') {
+      effectLevelSlider.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 1,
+        },
+        start : 1,
+        step: 0.1,
+      });
+      imgUploadPreview.style.filter = `grayscale(${effectLevelValue})`;
+    }
+    else if (selectedFilter === 'sepia') {
+      effectLevelSlider.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 1,
+        },
+        start : 1,
+        step: 0.1,
+      });
+      imgUploadPreview.style.filter = `sepia(${effectLevelValue})`;
+    }
+    else if (selectedFilter === 'marvin') {
+      effectLevelSlider.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 100,
+        },
+        start : 100,
+        step: 1,
+      });
+      imgUploadPreview.style.filter = `invert(${effectLevelValue}%)`;
+    }
+    else if (selectedFilter === 'phobos') {
+      effectLevelSlider.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 3,
+        },
+        start : 3,
+        step: 0.1,
+      });
+      imgUploadPreview.style.filter = `blur(${effectLevelValue}px)`;
+    }
+    else if (selectedFilter === 'heat') {
+      effectLevelSlider.noUiSlider.updateOptions({
+        range: {
+          min: 1,
+          max: 3,
+        },
+        start : 3,
+        step: 0.1,
+      });
+      imgUploadPreview.style.filter = `brightness(${effectLevelValue})`;
+    }
+  }
+  else {
+    const currentClass = imgUploadPreview.className;
+    imgUploadPreview.classList.remove(currentClass);
+    imgUploadPreview.classList.add('img-upload__preview');
+    makesHidden(effectLevelSlider);
+    imgUploadPreview.style.filter = '';
+  }
+};
+effectsList.addEventListener('change', onFilterChange);
 
 //Closing upload form with esc key
 const onKeyDown = (evt) => {
