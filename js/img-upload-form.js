@@ -19,7 +19,7 @@ scaleIncrease.addEventListener('click', () => {
     scaleValue.value.textContent = `${scaleNumber}%`;
     imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
   }
-})
+});
 const scaleDecrease = document.querySelector('.scale__control--smaller');
 scaleDecrease.addEventListener('click', () => {
   if (scaleNumber >= 50) {
@@ -27,7 +27,7 @@ scaleDecrease.addEventListener('click', () => {
     scaleValue.value.textContent = `${scaleNumber}%`;
     imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
   }
-})
+});
 
 //Effects slider
 const effectLevelSlider = document.querySelector('.effect-level__slider');
