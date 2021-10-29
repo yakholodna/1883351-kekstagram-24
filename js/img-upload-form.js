@@ -5,7 +5,7 @@ const uploadForm = document.querySelector('.img-upload__overlay');
 const formElement = document.querySelector('.img-upload__form');
 
 //Hashtags container
-const hashtagText = document.querySelector('.text__hashtags');
+const hashtagText = uploadForm.querySelector('.text__hashtags');
 
 //Preview image scale
 const imgUploadPreview = document.querySelector('.img-upload__preview');
@@ -47,7 +47,7 @@ effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
 });
 
 //Effects
-const effectsList = document.querySelector('.img-upload__effects  .effects');
+const effectsList = document.querySelector('.js-effects');
 let selectedFilter = '';
 const onFilterChange = (evt) => {
   selectedFilter = evt.target.value;
@@ -168,7 +168,6 @@ hashtagText.addEventListener('input', () => {
   else {
     hashtagText.setCustomValidity('');
   }
-
   for (let i = 0; i < hashArr.length; i++) {
     if (!valid.test(hashArr[i]) && hashArr[i] !== '') {
       hashtagText.setCustomValidity('Не валидный хештег. Убедитесь что нету спецсимволов, пробелов, символов пунктуации, и эмодзи.');
@@ -181,3 +180,6 @@ hashtagText.addEventListener('input', () => {
   }
   hashtagText.reportValidity();
 });
+
+
+
