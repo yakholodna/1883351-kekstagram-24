@@ -16,7 +16,7 @@ const scaleIncrease = document.querySelector('.scale__control--bigger');
 scaleIncrease.addEventListener('click', () => {
   if (scaleNumber <= 75) {
     scaleNumber += 25;
-    scaleValue.value.textContent = `${scaleNumber}%`;
+    scaleValue.value = `${scaleNumber}%`;
     imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
   }
 });
@@ -24,7 +24,7 @@ const scaleDecrease = document.querySelector('.scale__control--smaller');
 scaleDecrease.addEventListener('click', () => {
   if (scaleNumber >= 50) {
     scaleNumber -= 25;
-    scaleValue.value.textContent = `${scaleNumber}%`;
+    scaleValue.value = `${scaleNumber}%`;
     imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
   }
 });
@@ -42,19 +42,15 @@ noUiSlider.create(effectLevelSlider, {
   connect : 'lower',
 });
 makesHidden(effectLevelSlider);
-effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
-  effectLevelValue.value = unencoded[handle];
-});
 
 //Effects
-const effectsList = document.querySelector('.js-effects');
+const effectsList = document.querySelector('.effects__list');
 let selectedFilter = '';
 const onFilterChange = (evt) => {
   selectedFilter = evt.target.value;
   if (selectedFilter !== 'none') {
     //Adds filter to preview
-    const currentClass = imgUploadPreview.className;
-    imgUploadPreview.classList.remove(currentClass);
+    imgUploadPreview.className = '';
     imgUploadPreview.classList.add('img-upload__preview');
     imgUploadPreview.classList.add(`effects__preview--${selectedFilter}`);
     //Works slider
@@ -68,7 +64,10 @@ const onFilterChange = (evt) => {
         start : 1,
         step: 0.1,
       });
-      imgUploadPreview.style.filter = `grayscale(${effectLevelValue})`;
+      effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+        effectLevelValue.value = unencoded[handle];
+        imgUploadPreview.style.filter = `grayscale(${effectLevelSlider.noUiSlider.get()})`;
+      });
     }
     else if (selectedFilter === 'sepia') {
       effectLevelSlider.noUiSlider.updateOptions({
@@ -79,7 +78,10 @@ const onFilterChange = (evt) => {
         start : 1,
         step: 0.1,
       });
-      imgUploadPreview.style.filter = `sepia(${effectLevelValue})`;
+      effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+        effectLevelValue.value = unencoded[handle];
+        imgUploadPreview.style.filter = `sepia(${effectLevelSlider.noUiSlider.get()})`;
+      });
     }
     else if (selectedFilter === 'marvin') {
       effectLevelSlider.noUiSlider.updateOptions({
@@ -90,7 +92,10 @@ const onFilterChange = (evt) => {
         start : 100,
         step: 1,
       });
-      imgUploadPreview.style.filter = `invert(${effectLevelValue}%)`;
+      effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+        effectLevelValue.value = unencoded[handle];
+        imgUploadPreview.style.filter = `invert(${effectLevelSlider.noUiSlider.get()}%)`;
+      });
     }
     else if (selectedFilter === 'phobos') {
       effectLevelSlider.noUiSlider.updateOptions({
@@ -101,7 +106,10 @@ const onFilterChange = (evt) => {
         start : 3,
         step: 0.1,
       });
-      imgUploadPreview.style.filter = `blur(${effectLevelValue}px)`;
+      effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+        effectLevelValue.value = unencoded[handle];
+        imgUploadPreview.style.filter = `blur(${effectLevelSlider.noUiSlider.get()}px)`;
+      });
     }
     else if (selectedFilter === 'heat') {
       effectLevelSlider.noUiSlider.updateOptions({
@@ -112,18 +120,22 @@ const onFilterChange = (evt) => {
         start : 3,
         step: 0.1,
       });
-      imgUploadPreview.style.filter = `brightness(${effectLevelValue})`;
+      effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
+        effectLevelValue.value = unencoded[handle];
+        imgUploadPreview.style.filter = `brightness(${effectLevelSlider.noUiSlider.get()})`;
+      });
     }
   }
   else {
-    const currentClass = imgUploadPreview.className;
-    imgUploadPreview.classList.remove(currentClass);
+    imgUploadPreview.className = '';
     imgUploadPreview.classList.add('img-upload__preview');
     makesHidden(effectLevelSlider);
     imgUploadPreview.style.filter = '';
   }
 };
-effectsList.addEventListener('change', onFilterChange);
+effectsList.addEventListener('change', (evt) => {
+  onFilterChange(evt);
+});
 
 //Closing upload form with esc key
 const onKeyDown = (evt) => {

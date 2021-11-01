@@ -9,7 +9,7 @@ createMiniature(photos);
 const picturesContainer = document.querySelector('.pictures');
 picturesContainer.addEventListener('click', (evt) => {
   const currentPicture = evt.target.id;
-  if (currentPicture >= 0 && currentPicture < numOfPics) {
+  if (currentPicture > 0 && currentPicture < numOfPics) {
     showFullScreen(photos[currentPicture - 1]);
   }
 });
