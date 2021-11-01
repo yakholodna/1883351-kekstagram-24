@@ -13,9 +13,6 @@ const showFullScreen = (photo) => {
   const bigPicture = document.querySelector('.big-picture.overlay');
   const socialCommentCount = document.querySelector('.social__comment-count');
   const commentsLoader = document.querySelector('.comments-loader');
-  commentsLoader.addEventListener('click', () => {
-    showMoreComments();
-  })
 
   //Setup
   bigPicture.classList.remove('hidden');
@@ -72,7 +69,7 @@ const showFullScreen = (photo) => {
     socialCommentText.textContent = photo.comments[index].message;
     socialComment.appendChild(socialCommentText);
     socialCommentsList.appendChild(socialComment);
-  }
+  };
   let totalCommentsDistributed = 0;
 
   //Sets up initial comments for the picture
@@ -82,8 +79,7 @@ const showFullScreen = (photo) => {
       addComment(com);
     }
     socialCommentCount.textContent = `${photo.comments.length} из ${photo.comments.length} комментариев`;
-  }
-  else {
+  } else {
     for (let com = 0; commentFragmentSize; com++) {
       addComment(com);
     }
@@ -93,13 +89,16 @@ const showFullScreen = (photo) => {
 
   //Sets up other comments when "load more comments" is clicked
   const showMoreComments = () => {
-    for (let com = totalCommentsDistributed; com < commentFragmentSize+totalCommentsDistributed; com++) {
+    for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
       addComment(com);
     }
     totalCommentsDistributed += commentFragmentSize;
     socialCommentCount.textContent = `${totalCommentsDistributed} из ${photo.comments.length} комментариев`;
   };
-}
+  commentsLoader.addEventListener('click', () => {
+    showMoreComments();
+  });
+};
 
 //Exports
 export {showFullScreen};
