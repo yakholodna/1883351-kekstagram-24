@@ -1,7 +1,7 @@
 //All imports
-import {numOfPics} from './constants.js';
+import {numOfPics} from './utils/constants.js';
 import {generateComment, createPicture} from './create-functions.js';
-import {getRandomInt} from './utils.js';
+import {getRandomInt} from './utils/utils.js';
 
 // Array of 25 pictures
 const pictures = [];

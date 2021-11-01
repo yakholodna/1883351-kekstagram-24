@@ -1,6 +1,16 @@
-import {generatePictures} from './utils/create-photo-array.js';
-import {createMiniature} from './utils/miniatures.js';
-import './utils/img-upload-form.js';
+import {generatePictures} from './create-photo-array.js';
+import {createMiniature} from './miniatures.js';
+import './img-upload-form.js';
+import {showFullScreen} from './fullscreen.js';
+import {numOfPics} from './utils/constants.js';
 
-createMiniature(generatePictures());
+const photos = generatePictures();
+createMiniature(photos);
+const picturesContainer = document.querySelector('.pictures');
+picturesContainer.addEventListener('click', (evt) => {
+  const currentPicture = evt.target.id;
+  if (currentPicture > 0 && currentPicture < numOfPics) {
+    showFullScreen(photos[currentPicture - 1]);
+  }
+});
 

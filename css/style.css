@@ -685,8 +685,7 @@ main {
 .text__hashtags {
   width: 450px;
 
-  margin: 0 auto;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   padding: 5px 10px;
 
   font-family: "Open Sans", "Arial", sans-serif;
