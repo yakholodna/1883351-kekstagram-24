@@ -53,6 +53,8 @@ const showFullScreen = (photo) => {
     socialCommentsList.removeChild(child);
     child = socialCommentsList.lastElementChild;
   }
+  let totalCommentsDistributed = 0;
+
   //Function that adds a single comment
   const addComment = (index) => {
     const socialComment = document.createElement('li');
@@ -70,7 +72,6 @@ const showFullScreen = (photo) => {
     socialComment.appendChild(socialCommentText);
     socialCommentsList.appendChild(socialComment);
   };
-  let totalCommentsDistributed = 0;
 
   //Sets up initial comments for the picture
   if (photo.comments.length < commentFragmentSize) {
@@ -79,8 +80,9 @@ const showFullScreen = (photo) => {
       addComment(com);
     }
     socialCommentCount.textContent = `${photo.comments.length} из ${photo.comments.length} комментариев`;
-  } else {
-    for (let com = 0; commentFragmentSize; com++) {
+  }
+  else {
+    for (let com = 0; com < commentFragmentSize; com++) {
       addComment(com);
     }
     totalCommentsDistributed += commentFragmentSize;
@@ -89,14 +91,19 @@ const showFullScreen = (photo) => {
 
   //Sets up other comments when "load more comments" is clicked
   const showMoreComments = () => {
-    for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
-      addComment(com);
+    if (totalCommentsDistributed < photo.comments.length) {
+      for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
+        addComment(com);
+      }
+      totalCommentsDistributed += commentFragmentSize;
+      socialCommentCount.textContent = `${totalCommentsDistributed} из ${photo.comments.length} комментариев`;
     }
-    totalCommentsDistributed += commentFragmentSize;
-    socialCommentCount.textContent = `${totalCommentsDistributed} из ${photo.comments.length} комментариев`;
   };
   commentsLoader.addEventListener('click', () => {
     showMoreComments();
+    if (totalCommentsDistributed >= photo.comments.length) {
+      makesHidden(commentsLoader);
+    }
   });
 };
 
