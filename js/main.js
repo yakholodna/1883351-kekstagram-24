@@ -20,7 +20,7 @@ fetch('https://24.javascript.pages.academy/kekstagram/data')
   });
 picturesContainer.addEventListener('click', (evt) => {
   //Здесь нужна помощь. Когда кликаю на upload, всё равно открывается последняя фотка которая была открыта, не смотря на то что есть код который это должен предусматривать
-  if (evt.target.id !== "upload-file") {
+  if (evt.target.id !== 'upload-file') {
     const currentPicture = images[0][evt.target.id];
     showFullScreen(currentPicture);
   }

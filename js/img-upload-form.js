@@ -142,11 +142,7 @@ effectsList.addEventListener('change', (evt) => {
 });
 
 /*---------------------------------------Hashtag-----------------------------------------------------*/
-const hasDuplicates = (arr) => {
-  return arr.some(function (item) {
-    return arr.indexOf(item) !== arr.lastIndexOf(item);
-  });
-};
+const hasDuplicates = (arr) => arr.some((item, index) => index !== arr.indexOf(item));
 //Checking hashtag validity
 hashtagText.addEventListener('input', () => {
   const value = hashtagText.value;
