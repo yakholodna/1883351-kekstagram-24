@@ -33,7 +33,7 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" method="post" enctype="multipart/form-data" action="https://24.javascript.pages.academy/kekstagram" autocomplete="off">
+          <form class="img-upload__form" method="post" action="https://24.javascript.pages.academy/kekstagram" id="upload-select-image" enctype="multipart/form-data" autocomplete="off">
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
@@ -42,7 +42,7 @@
             </fieldset>
 
             <!-- Форма редактирования изображения -->
-            <div class="img-upload__overlay  hidden">
+            <div class="img-upload__overlay hidden">
               <div class="img-upload__wrapper">
                 <div class="img-upload__preview-container">
 
@@ -118,12 +118,12 @@
 
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                  <input class="text__hashtags" type="text" name="hashtags" value="" placeholder="#ХэшТег" minlength="1" maxlength="20">
+                  <input type="text" class="text__hashtags" placeholder="#ХэшТег" minlength="1" maxlength="20">
                   <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
-                <button type="submit" class="img-upload__submit" id="upload-submit" onclick="submit()">Опубликовать</button>
+                <button type="submit" class="img-upload__submit" id="upload-submit" onsubmit="submit()">Опубликовать</button>
               </div>
             </div>
           </form>

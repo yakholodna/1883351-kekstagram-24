@@ -1,4 +1,3 @@
-import {showFullScreen} from './fullscreen.js';
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
   const pictureFragment = document.createDocumentFragment();
@@ -10,9 +9,6 @@ const createMiniature = (photos) => {
     photoElement.querySelector('.picture__img').id = photo.id;
     photoElement.querySelector('.picture__likes').textContent = photo.likes;
     photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
-    photoElement.addEventListener('click', () => {
-      showFullScreen(photo);
-    });
     pictureFragment.appendChild(photoElement);
   });
   return pictureContainer.appendChild(pictureFragment);
