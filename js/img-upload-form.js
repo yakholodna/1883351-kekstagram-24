@@ -24,7 +24,7 @@ scaleIncrease.addEventListener('click', () => {
   if (scaleNumber <= 75) {
     scaleNumber += 25;
     scaleValue.value = `${scaleNumber}%`;
-    imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
+    imgUploadPreview.style.transform = `scale(${scaleNumber / 100})`;
   }
 });
 const scaleDecrease = document.querySelector('.scale__control--smaller');
@@ -32,7 +32,7 @@ scaleDecrease.addEventListener('click', () => {
   if (scaleNumber >= 50) {
     scaleNumber -= 25;
     scaleValue.value = `${scaleNumber}%`;
-    imgUploadPreview.style.transform = `scale(${scaleNumber/100})`;
+    imgUploadPreview.style.transform = `scale(${scaleNumber / 100})`;
   }
 });
 
@@ -42,13 +42,13 @@ scaleDecrease.addEventListener('click', () => {
 const effectLevelSlider = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 noUiSlider.create(effectLevelSlider, {
-  start : 1.00,
-  range : {
-    min : 0,
-    max : 1.00,
+  start: 1.00,
+  range: {
+    min: 0,
+    max: 1.00,
   },
-  step : 0.1,
-  connect : 'lower',
+  step: 0.1,
+  connect: 'lower',
 });
 makesHidden(effectLevelSlider);
 
@@ -70,63 +70,59 @@ const onFilterChange = (evt) => {
           min: 0,
           max: 1,
         },
-        start : 1,
+        start: 1,
         step: 0.1,
       });
       effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
         effectLevelValue.value = unencoded[handle];
         imgUploadPreview.style.filter = `grayscale(${effectLevelSlider.noUiSlider.get()})`;
       });
-    }
-    else if (selectedFilter === 'sepia') {
+    } else if (selectedFilter === 'sepia') {
       effectLevelSlider.noUiSlider.updateOptions({
         range: {
           min: 0,
           max: 1,
         },
-        start : 1,
+        start: 1,
         step: 0.1,
       });
       effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
         effectLevelValue.value = unencoded[handle];
         imgUploadPreview.style.filter = `sepia(${effectLevelSlider.noUiSlider.get()})`;
       });
-    }
-    else if (selectedFilter === 'marvin') {
+    } else if (selectedFilter === 'marvin') {
       effectLevelSlider.noUiSlider.updateOptions({
         range: {
           min: 0,
           max: 100,
         },
-        start : 100,
+        start: 100,
         step: 1,
       });
       effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
         effectLevelValue.value = unencoded[handle];
         imgUploadPreview.style.filter = `invert(${effectLevelSlider.noUiSlider.get()}%)`;
       });
-    }
-    else if (selectedFilter === 'phobos') {
+    } else if (selectedFilter === 'phobos') {
       effectLevelSlider.noUiSlider.updateOptions({
         range: {
           min: 0,
           max: 3,
         },
-        start : 3,
+        start: 3,
         step: 0.1,
       });
       effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
         effectLevelValue.value = unencoded[handle];
         imgUploadPreview.style.filter = `blur(${effectLevelSlider.noUiSlider.get()}px)`;
       });
-    }
-    else if (selectedFilter === 'heat') {
+    } else if (selectedFilter === 'heat') {
       effectLevelSlider.noUiSlider.updateOptions({
         range: {
           min: 1,
           max: 3,
         },
-        start : 3,
+        start: 3,
         step: 0.1,
       });
       effectLevelSlider.noUiSlider.on('update', (_, handle, unencoded) => {
@@ -134,8 +130,7 @@ const onFilterChange = (evt) => {
         imgUploadPreview.style.filter = `brightness(${effectLevelSlider.noUiSlider.get()})`;
       });
     }
-  }
-  else {
+  } else {
     imgUploadPreview.className = '';
     imgUploadPreview.classList.add('img-upload__preview');
     makesHidden(effectLevelSlider);
@@ -147,11 +142,11 @@ effectsList.addEventListener('change', (evt) => {
 });
 
 /*---------------------------------------Hashtag-----------------------------------------------------*/
-function hasDuplicates(arr) {
-  return arr.some( function(item) {
+const hasDuplicates = (arr) => {
+  return arr.some(function (item) {
     return arr.indexOf(item) !== arr.lastIndexOf(item);
   });
-}
+};
 //Checking hashtag validity
 hashtagText.addEventListener('input', () => {
   const value = hashtagText.value;
@@ -196,8 +191,9 @@ const onKeyDown = (evt) => {
 function openForm() {
   uploadForm.classList.remove('hidden');
   addBodyModalOpen();
-   document.addEventListener('keydown', onKeyDown);
+  document.addEventListener('keydown', onKeyDown);
 }
+
 function closeForm() {
   makesHidden(uploadForm);
   removeBodyModalOpen();
@@ -225,23 +221,23 @@ formElement.addEventListener('submit', (evt) => {
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
         body: formData,
       })
       .then((response) => {
         closeForm();
-        if(response.ok) {
+        if (response.ok) {
           const successMessage = imgUploadSuccess.cloneNode(true);
           body.appendChild(successMessage);
           document.querySelector('.success__button').addEventListener('click', () => {
             body.removeChild(successMessage);
-          })
-          document.addEventListener('keydown', (evt) => {
-            if(evt.key === escCode) {
+          });
+          document.addEventListener('keydown', (event) => {
+            if (event.key === escCode) {
               body.removeChild(successMessage);
             }
-          })
+          });
         }
       })
       .catch(() => {
@@ -250,15 +246,14 @@ formElement.addEventListener('submit', (evt) => {
         body.appendChild(errorMessage);
         document.querySelector('.error__button').addEventListener('click', () => {
           body.removeChild(errorMessage);
-        })
-        document.addEventListener('keydown', (evt) => {
-          if(evt.key === escCode) {
+        });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === escCode) {
             body.removeChild(errorMessage);
           }
-        })
-      })
-  }
-  else {
+        });
+      });
+  } else {
     hashtagText.classList.add('img-upload__invalid');
   }
 });
