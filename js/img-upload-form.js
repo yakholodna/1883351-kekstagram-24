@@ -7,6 +7,7 @@ const uploadForm = document.querySelector('.img-upload__overlay');
 const formElement = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
 const imgUploadError = document.querySelector('#error').content;
+const errorMessage = imgUploadError.cloneNode(true);
 const imgUploadSuccess = document.querySelector('#success').content;
 //Hashtags container
 const hashtagText = uploadForm.querySelector('.text__hashtags');
@@ -190,7 +191,14 @@ function openForm() {
 }
 
 function closeForm() {
+  //Resets
+  imgUploadPreview.className = '';
+  imgUploadPreview.classList.add('img-upload__preview');
+  makesHidden(effectLevelSlider);
+  imgUploadPreview.style.filter = '';
+  scaleValue.value = '100%';
   formElement.reset();
+  //
   makesHidden(uploadForm);
   removeBodyModalOpen();
   document.removeEventListener('keydown', onKeyDown);
@@ -237,12 +245,12 @@ formElement.addEventListener('submit', (evt) => {
       })
       .catch(() => {
         closeForm();
-        const errorMessage = imgUploadError.cloneNode(true);
         body.appendChild(errorMessage);
-        document.querySelector('.error__button').addEventListener('click', () => {
+        const errorButton = document.querySelector('.error__button');
+        errorButton.addEventListener('click', () => {
           body.removeChild(errorMessage);
         });
-        document.addEventListener('keydown', (event) => {
+        errorMessage.addEventListener('keydown', (event) => {
           if (event.key === escCode) {
             body.removeChild(errorMessage);
           }

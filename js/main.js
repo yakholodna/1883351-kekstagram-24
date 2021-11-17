@@ -1,5 +1,6 @@
 import {createMiniature, createRandomMiniatures, createPopularMiniatures} from './miniatures.js';
 import './img-upload-form.js';
+import './user-picture.js';
 import {showFullScreen} from './fullscreen.js';
 import {setDefaultClick, setRandomClick, setDiscussedClick} from './filters.js';
 import {debounce} from './utils/debounce.js';
