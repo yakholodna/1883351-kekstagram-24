@@ -191,9 +191,9 @@ function openForm() {
 }
 
 function closeForm() {
+  formElement.reset();
   makesHidden(uploadForm);
   removeBodyModalOpen();
-  formElement.reset();
   document.removeEventListener('keydown', onKeyDown);
 }
 

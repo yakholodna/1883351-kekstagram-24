@@ -13,6 +13,7 @@ const showFullScreen = (photo) => {
   const bigPicture = document.querySelector('.big-picture.overlay');
   const socialCommentCount = document.querySelector('.social__comment-count');
   const commentsLoader = document.querySelector('.comments-loader');
+  const numOfComments = photo.comments.length;
 
   //Setup
   bigPicture.classList.remove('hidden');
@@ -74,36 +75,49 @@ const showFullScreen = (photo) => {
   };
 
   //Sets up initial comments for the picture
-  if (photo.comments.length < commentFragmentSize) {
+  if (numOfComments <= commentFragmentSize) {
     makesHidden(commentsLoader);
-    for (let com = 0; com < photo.comments.length; com++) {
+    for (let com = 0; com < numOfComments; com++) {
       addComment(com);
     }
-    socialCommentCount.textContent = `${photo.comments.length} из ${photo.comments.length} комментариев`;
+    socialCommentCount.textContent = `${numOfComments} из ${numOfComments} комментариев`;
   }
   else {
     for (let com = 0; com < commentFragmentSize; com++) {
       addComment(com);
     }
     totalCommentsDistributed += commentFragmentSize;
-    socialCommentCount.textContent = `${commentFragmentSize} из ${photo.comments.length} комментариев`;
+    socialCommentCount.textContent = `${commentFragmentSize} из ${numOfComments} комментариев`;
   }
+
 
   //Sets up other comments when "load more comments" is clicked
   const showMoreComments = () => {
-    if (totalCommentsDistributed < photo.comments.length) {
-      for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
-        addComment(com);
+    if (totalCommentsDistributed < numOfComments) {
+      console.log((numOfComments - totalCommentsDistributed) >= commentFragmentSize);
+      if ((numOfComments - totalCommentsDistributed) >= commentFragmentSize) {
+        for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
+          addComment(com);
+        }
+        totalCommentsDistributed += commentFragmentSize;
+        socialCommentCount.textContent = `${totalCommentsDistributed} из ${numOfComments} комментариев`;
       }
-      totalCommentsDistributed += commentFragmentSize;
-      socialCommentCount.textContent = `${totalCommentsDistributed} из ${photo.comments.length} комментариев`;
+      else {
+        let diff = 0;
+        for (let com = totalCommentsDistributed; com < numOfComments; com++) {
+          addComment(com);
+          diff++;
+        }
+        totalCommentsDistributed += diff;
+        socialCommentCount.textContent = `${totalCommentsDistributed} из ${numOfComments} комментариев`;
+      }
+    }
+    if (totalCommentsDistributed === numOfComments) {
+      makesHidden(commentsLoader);
     }
   };
   commentsLoader.addEventListener('click', () => {
     showMoreComments();
-    if (totalCommentsDistributed >= photo.comments.length) {
-      makesHidden(commentsLoader);
-    }
   });
 };
 
