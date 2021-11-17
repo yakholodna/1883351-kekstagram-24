@@ -8,7 +8,6 @@ const formElement = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
 const imgUploadError = document.querySelector('#error').content;
 const imgUploadSuccess = document.querySelector('#success').content;
-//const uploadButton = document.querySelector('.img-upload__submit');
 //Hashtags container
 const hashtagText = uploadForm.querySelector('.text__hashtags');
 
