@@ -1,10 +1,7 @@
 const imgUpload = document.querySelector('.img-upload');
-const comparePicturePopularity = ((pictureA, pictureB) => {return pictureB.comments.length - pictureA.comments.length});
-const putInOriginalOrder = ((picture1, picture2) => {return picture1.id - picture2.id});
-
-const shuffle = (array) => {
-  array.sort(() => {return Math.random() - .5});
-};
+const comparePicturePopularity = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
+const putInOriginalOrder = (picture1, picture2) => picture1.id - picture2.id;
+const shuffle = (array) => array.sort(() => Math.random() - .5);
 
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
