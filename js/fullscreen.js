@@ -94,7 +94,6 @@ const showFullScreen = (photo) => {
   //Sets up other comments when "load more comments" is clicked
   const showMoreComments = () => {
     if (totalCommentsDistributed < numOfComments) {
-      console.log((numOfComments - totalCommentsDistributed) >= commentFragmentSize);
       if ((numOfComments - totalCommentsDistributed) >= commentFragmentSize) {
         for (let com = totalCommentsDistributed; com < commentFragmentSize + totalCommentsDistributed; com++) {
           addComment(com);

@@ -1,15 +1,11 @@
 const imgUpload = document.querySelector('.img-upload');
-const comparePicturePopularity = (pictureA, pictureB) => {
-  return pictureB.comments.length - pictureA.comments.length;
+const comparePicturePopularity = (pictureA, pictureB) => {return pictureB.comments.length - pictureA.comments.length};
+const putInOriginalOrder = (picture1, picture2) => {return picture1.id - picture2.id};
+
+const shuffle = (array) => {
+  array.sort(function () {return Math.random() - .5});
 }
-const putInOriginalOrder  = (picture1, picture2) => {
-  return picture1.id - picture2.id;
-}
-function shuffle(array) {
-  array.sort(function() {
-    return Math.random() - .5;
-  });
-}
+
 const createMiniature = (photos) => {
   const pictureTemplate = document.querySelector('#picture').content;
   const pictureFragment = document.createDocumentFragment();
@@ -19,13 +15,13 @@ const createMiniature = (photos) => {
     .slice()
     .sort(putInOriginalOrder)
     .forEach((photo) => {
-    const photoElement = pictureTemplate.cloneNode(true);
-    photoElement.querySelector('.picture__img').src = photo.url;
-    photoElement.querySelector('.picture__img').id = photo.id;
-    photoElement.querySelector('.picture__likes').textContent = photo.likes;
-    photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
-    pictureFragment.appendChild(photoElement);
-  });
+      const photoElement = pictureTemplate.cloneNode(true);
+      photoElement.querySelector('.picture__img').src = photo.url;
+      photoElement.querySelector('.picture__img').id = photo.id;
+      photoElement.querySelector('.picture__likes').textContent = photo.likes;
+      photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
+      pictureFragment.appendChild(photoElement);
+    });
   pictureContainer.innerHTML = '';
   pictureContainer.appendChild(imgUpload);
   return pictureContainer.appendChild(pictureFragment);

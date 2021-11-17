@@ -8,8 +8,8 @@ const setDefaultClick = (cb) => {
     randomFilter.classList.remove('img-filters__button--active');
     defaultFilter.classList.add('img-filters__button--active');
     cb();
-  })
-}
+  });
+};
 //Shows 10 random photos (cannot repeat)
 const setRandomClick = (cb) => {
   randomFilter.addEventListener('click', () => {
@@ -17,8 +17,8 @@ const setRandomClick = (cb) => {
     discussedFilter.classList.remove('img-filters__button--active');
     randomFilter.classList.add('img-filters__button--active');
     cb();
-  })
-}
+  });
+};
 //Shows all 25 photos with the most amount of comments at the top (in decreasing order)
 const setDiscussedClick = (cb) => {
   discussedFilter.addEventListener('click', () => {
@@ -26,7 +26,7 @@ const setDiscussedClick = (cb) => {
     randomFilter.classList.remove('img-filters__button--active');
     discussedFilter.classList.add('img-filters__button--active');
     cb();
-  })
-}
+  });
+};
 
 export {setDefaultClick, setDiscussedClick, setRandomClick};
